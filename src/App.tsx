@@ -1,17 +1,21 @@
-import React from 'react';
-import { GameBoard } from './components/GameBoard';
-import { ScoreBoard } from './components/ScoreBoard';
-import { ControlPanel } from './components/ControlPanel';
+// App.tsx
+import React from 'react'
+import { useGame } from './hooks/useGame'
+import { ScoreBoard } from './components/ScoreBoard'
+import { GameBoard } from './components/GameBoard'
+import { ControlPanel } from './components/ControlPanel'
 
-function App() {
+const App: React.FC = () => {
+  const { state, dispatch } = useGame()
+
   return (
-    <div style={{ padding: 24 }}>
+    <div>
       <h1>Two Player Bomb Game</h1>
-      <ScoreBoard />
-      <GameBoard />
-      <ControlPanel />
+      <ScoreBoard state={state} />
+      <GameBoard state={state} dispatch={dispatch} />
+      <ControlPanel dispatch={dispatch} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

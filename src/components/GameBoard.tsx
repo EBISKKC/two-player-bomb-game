@@ -1,16 +1,17 @@
 import React from 'react';
+import { GameState, GameAction } from '../types/game';
 import { NumberCard } from './NumberCard';
-import { useGame } from '../hooks/useGame';
 
-export const GameBoard: React.FC = () => {
-  const { state, dispatch } = useGame();
+interface GameBoardProps {
+  state: GameState;
+  dispatch: React.Dispatch<GameAction>;
+}
 
+export const GameBoard: React.FC<GameBoardProps> = ({ state, dispatch }) => {
   const handleClick = (num: number) => {
     if (state.bombNumber === null) {
-      console.log('Setting bomb number:', num);
       dispatch({ type: 'SET_BOMB', payload: num });
     } else {
-      console.log('Selecting number:', num, 'Current player:', state.currentPlayer);
       dispatch({ type: 'SELECT_NUMBER', payload: num });
     }
   };

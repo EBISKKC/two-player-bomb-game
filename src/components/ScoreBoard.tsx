@@ -1,9 +1,11 @@
 import React from 'react';
-import { useGame } from '../hooks/useGame';
+import { GameState } from '../types/game';
 
-export const ScoreBoard: React.FC = () => {
-  const { state } = useGame();
+interface ScoreBoardProps {
+  state: GameState;
+}
 
+export const ScoreBoard: React.FC<ScoreBoardProps> = ({ state }) => {
   return (
     <div style={{ margin: '16px 0', textAlign: 'center' }}>
       <h2>Game Status</h2>
